@@ -1,0 +1,7 @@
+argument_specs:
+  main:
+    short_description: set up servers for work with docker
+    author: Ars-Rem
+
+dependencies:
+  - role: deploy
