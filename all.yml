@@ -2,6 +2,10 @@
 - name: All configs
   hosts: cluster
   roles:
-    - preconfig
-    - deploy
+    - role: deploy
+      message: "mes1"
+    - role: deploy
+      message: "mes2"  
+    - role: preconfig
     
+
