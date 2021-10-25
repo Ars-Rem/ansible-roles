@@ -1,11 +1,19 @@
 ---
 - name: All configs
-  hosts: cluster
+  hosts: deploy
   roles:
-    - role: deploy
-      message: "mes1"
-    - role: deploy
-      message: "mes2"  
+#    - role: deploy
+#      message: "mes1"
+#    - role: deploy
+#      message: "mes2"  
     - role: preconfig
     
+- name: All configs
+  hosts: managers
+  roles: 
+    - role: preconfig
 
+- name: All configs
+  hosts: workers
+  roles: 
+    - role: preconfig
