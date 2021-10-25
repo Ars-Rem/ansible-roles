@@ -1,12 +1,19 @@
 ---
-- name: deploy task
-  command: "echo {{ test }}"
-  register: result
-  changed_when: "'0' in result.stdout"
+#- name: deploy task
+#  command: "echo {{ test }}"
+#  register: result
+#  changed_when: "'0' in result.stdout"
 
-- name: debug 
+#- name: debug 
+#  debug:
+#    var: result
+#    verbosity: 5
+
+- name: cikle
   debug:
-    var: result
-    verbosity: 5
+    msg: "{{ item }}"
+  loop:
+    - a
+    - b
 
     
