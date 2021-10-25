@@ -7,17 +7,21 @@
 #    - role: deploy
 #      message: "mes2"  
     - role: preconfig
+      test: 0
+      tags: deploy
 #    - role: deploy
 #    - role:swarm_init
     
 - name: manager
   hosts: managers
   roles: 
-    - preconfig
+    - role:  preconfig
+      tags: preconfig
 #    - swarm_join
 
 - name: workers
   hosts: workers
   roles: 
-    - preconfig
+    - role: preconfig
+      tags: preconfig
 #    - swarm_join
