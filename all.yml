@@ -1,5 +1,5 @@
 ---
-- name: All configs
+- name: deploys server
   hosts: deploy
   roles:
 #    - role: deploy
@@ -7,13 +7,17 @@
 #    - role: deploy
 #      message: "mes2"  
     - role: preconfig
+    - role: deploy
+    - role:swarm_init
     
-- name: All configs
+- name: manager
   hosts: managers
   roles: 
-    - role: preconfig
+    - preconfig
+    - swarm_join
 
-- name: All configs
+- name: workers
   hosts: workers
   roles: 
-    - role: preconfig
+    - preconfig
+    - swarm_join
