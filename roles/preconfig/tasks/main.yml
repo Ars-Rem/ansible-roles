@@ -60,10 +60,10 @@
 
 - name: install extra package python3-pip
   block:
-    - name: insatll pip
+    - name: install pip
       pip:
         name: docker
-              
+
 - name: end installation
   become: true  
   block:
