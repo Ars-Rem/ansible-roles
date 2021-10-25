@@ -10,6 +10,6 @@ galaxy_info:
       versions:
         - all
 
-dependencies:
-  - role: deploy
-allow_duplicates: true
+#dependencies:
+#  - role: deploy
+#allow_duplicates: true
