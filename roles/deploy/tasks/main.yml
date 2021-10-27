@@ -37,5 +37,15 @@
     msg: "{{ item }}"
   loop: "{{ groups['all'] }}"
 
+- name: big object
+  debug:
+    msg: "{{ item.name }}"
+  loop:
+    - name: Ars
+      group: "Admin"
+      roles:
+        admin: true
+        manager: true
+        user: true
 
       
