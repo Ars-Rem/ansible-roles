@@ -39,7 +39,7 @@
 
 - name: big object
   debug:
-    msg: "{{ item.name }}"
+    msg: "{{ item.name }} - {{ index }}"
   loop:
     - name: Ars
       group: "Admin"
@@ -52,4 +52,4 @@
   loop_control:
     label: "{{ item.name }}"
     pause: 3
-
+    index_var: index
