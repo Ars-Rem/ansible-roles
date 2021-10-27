@@ -39,7 +39,7 @@
 
 - name: big object
   debug:
-    msg: "{{ item.name }} - {{ index }}"
+    msg: "{{ item.name }} - {{ index }} - {{ ansible_loop.allitems }}"
   loop:
     - name: Ars
       group: "Admin"
@@ -53,3 +53,4 @@
     label: "{{ item.name }}"
     pause: 3
     index_var: index
+    extended: yes
