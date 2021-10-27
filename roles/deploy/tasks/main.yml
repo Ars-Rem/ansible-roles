@@ -32,9 +32,9 @@
   debug:
     var: res
 
-- name: iteration on dict
+- name: iteration of inventory
   debug:
-    var: "{{ item }}"
+    msg: "{{ item }}"
   loop: "{{ groups['all'] }}"
 
 
