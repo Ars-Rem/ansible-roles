@@ -47,6 +47,9 @@
         admin: true
         manager: true
         user: true
+    - name: alex
+    - name: alex2
   loop_control:
     label: "{{ item.name }}"
-      
+    pause: 3
+
