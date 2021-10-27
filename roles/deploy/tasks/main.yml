@@ -47,5 +47,6 @@
         admin: true
         manager: true
         user: true
-
+  loop_control:
+    label: "{{ item.name }}"
       
