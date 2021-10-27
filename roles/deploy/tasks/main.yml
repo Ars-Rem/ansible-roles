@@ -21,4 +21,21 @@
     #- {name: "Ars", group: "Admin"}
     #- {name: "Ars", group: "DevOps"}
     
-    
+- name: register
+  command: echo "{{ item }}"
+  loop: 
+  - a
+  - b
+  register: res
+
+- name: debug
+  debug:
+    var: res
+
+- name: iteration on dict
+  debug:
+    var: "{{ item }}"
+  loop: "{{ groups['all'] }}"
+
+
+      
