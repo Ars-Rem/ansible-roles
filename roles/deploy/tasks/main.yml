@@ -54,3 +54,13 @@
     pause: 3
     index_var: index
     extended: yes
+
+- name: loop_var
+  debug:
+    msg: "{{ outer_item.name }}"
+  loop:
+    - name: Ars
+    - name: Van
+    - name: Kim
+  loop_control:
+    loop_var: outer_item
