@@ -10,11 +10,15 @@
   # verbosity: 5
 
 - name: cycle
+  vars:
+    data:
+      a: 1
+      b: 2
   debug:
-    msg: "{{ item }}"
-  loop:
-    - a
-    - b
-    - c
-    - a + b
+    msg: "{{ item.key }} = {{ item.value }}"
+    #msg: "{{ item.name }} is {{ item.group }}"
+  loop: "{{ data | dict2items }}"
+    #- {name: "Ars", group: "Admin"}
+    #- {name: "Ars", group: "DevOps"}
+    
     
