@@ -104,4 +104,14 @@
     admin: true
   debug:
     msg: "{{ admin | type_debug }}"
+
+- name: item to dict
+  vars:
+    admin:
+      - key: a
+        value: 1
+      - key: b
+        value: 2
+  debug:
+    msg: "{{ admin | items2dict }}"
       
