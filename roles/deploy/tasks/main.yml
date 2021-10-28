@@ -74,3 +74,6 @@
   loop_control:
     loop_var: outer_item
 
+- name: file
+  debug:
+    msg: "{{ lookup('file', '../meta/main.yml') }}"
