@@ -67,8 +67,6 @@
 
 - name: loop_var
   include_tasks: inner.yml
-  debug:
-    msg: "{{ outer_item.name }}"
   loop:
     - name: Ars
     - name: Van
