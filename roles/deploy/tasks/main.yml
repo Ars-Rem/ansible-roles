@@ -115,3 +115,13 @@
   debug:
     msg: "{{ admin | items2dict }}"
       
+- name: item to dict another number of keys_values
+  vars:
+    admin:
+      - keys: a
+        values: 1
+      - keys: b
+        values: 2
+  debug:
+    msg: "{{ admin | items2dict(key_name='keys', value_name='values') }}"
+  
