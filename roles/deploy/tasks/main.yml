@@ -77,3 +77,31 @@
 - name: file
   debug:
     msg: "{{ lookup('file', 'main.yml', errors='warn') }}"
+
+- name: vars
+  vars:
+    name: a
+  debug:
+    msg: "{{ lookup('vars', 'name') }}"
+
+- name: filters
+  debug:
+    msg: "{{ my_var | default(5)}}"
+
+- name: file
+  ignore_errors: true
+  file:
+    dest: "{{ item.path }}"
+    state: touch
+    mode: "{{ item.mode | default(omit) }}"
+  loop:
+    - path: "/test"
+    - path: "../test_2"
+      mode: "0666"
+
+- name: vars admin_true
+  vars:
+    admin: true
+  debug:
+    msg: "{{ admin | type_debug }}"
+      
