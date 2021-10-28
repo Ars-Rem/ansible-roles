@@ -1,0 +1,15 @@
+galaxy_info:
+# argument_specs:
+    role_name: deploy
+    description: deploy microservices in docker master
+    author: Ars-Rem
+    license: DEV
+    min_ansible_version: 2.9
+    platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+#dependencies:
+#  - role: deploy
+#allow_duplicates: true

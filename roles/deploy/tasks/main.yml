@@ -76,4 +76,4 @@
 
 - name: file
   debug:
-    msg: "{{ lookup('file', '../meta/main.yml', errors='warn') }}"
+    msg: "{{ lookup('file', 'main.yml', errors='warn') }}"
