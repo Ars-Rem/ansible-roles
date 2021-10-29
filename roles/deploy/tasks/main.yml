@@ -208,3 +208,10 @@
   debug:
     msg: "{{ var | union([0, 1, 2, 4]) }}"
  
+- name: urlsplit
+  vars:
+    var: "http://google.com/get"
+  debug:
+    msg: "{{ var | urlsplit('hostname') }}"
+   
+     
