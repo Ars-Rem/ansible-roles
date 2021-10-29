@@ -144,3 +144,10 @@
   debug:
      msg: "{{ admin | to_json }}"
     #msg: "{{ admin | to_nice_json }}"
+
+- name: combine
+  vars:
+    admin: { a: 1, b: 2 }
+  debug:
+     msg: "{{ admin | combine({'c': 3}) }}"
+    #msg: "{{ admin | to_nice_json }}"
