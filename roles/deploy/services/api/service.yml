@@ -7,4 +7,15 @@
       secret: "{{ lookup('file', '.env') | (hash('sha1')) }}"
     data_is_b64: true
     state: present
-    
+
+- name: "deploy service {{ name }}"
+  community.docker.docker_swarm_service:
+    name: "{{ name }}"
+    image: localhost:5000/api:latest
+    state: present
+    publish:
+      mode: ingress
+      protcol: tcp
+      published_port: 5000
+      target_port: 5000
+      
