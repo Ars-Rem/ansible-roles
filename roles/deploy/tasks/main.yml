@@ -195,3 +195,10 @@
     admin: [1, [2, 3], [3, 4, 5, 5]]
   debug:
     msg: "{{ admin | flatten | unique }}"
+
+- name: intersect
+  vars:
+    admin: [1, 2, 3]
+  debug:
+    msg: "{{ admin | intersect([1, 2]) }}"
+
