@@ -18,8 +18,7 @@
     msg: "{{ item.key }} = {{ item.value }}"
     #msg: "{{ item.name }} is {{ item.group }}"
   loop: "{{ data | dict2items }}"
-    #- {name: "Ars", group: "Admin"}
-    #- {name: "Ars", group: "DevOps"}
+    
     
 - name: register
   command: echo "{{ item }}"
