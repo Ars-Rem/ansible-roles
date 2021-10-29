@@ -125,3 +125,22 @@
   debug:
     msg: "{{ admin | items2dict(key_name='keys', value_name='values') }}"
   
+- name: types mutable
+  vars:
+    admin: "yes"
+  debug:
+    msg: "{{ admin | bool | type_debug }}"
+
+- name: json to yaml
+  vars:
+    admin: { a: 1, b: 2 }
+  debug:
+     msg: "{{ admin | to_yaml }}"
+    #msg: "{{ admin | to_nice_yaml }}"
+
+- name: yaml to json
+  vars:
+    admin: { a: 1, b: 2 }
+  debug:
+     msg: "{{ admin | to_json }}"
+    #msg: "{{ admin | to_nice_json }}"
