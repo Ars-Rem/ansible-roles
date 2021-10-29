@@ -210,8 +210,16 @@
  
 - name: urlsplit
   vars:
-    var: "http://google.com/get"
+    var: "http://google.com:9000/get"
   debug:
     msg: "{{ var | urlsplit('hostname') }}"
-   
+
+- name: valid ip
+  vars:
+    ip: "127.0.0.1"
+  debug:
+    msg: "{{ ip | ansible.netcommon.ipv4 }}"
+
+
+  
      
