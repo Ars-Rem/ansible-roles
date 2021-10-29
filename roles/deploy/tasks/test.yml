@@ -1,0 +1,235 @@
+
+- name: deploy task
+  command: "echo {{ test }}"
+  register: result
+  changed_when: "'0' not in result.stdout"
+
+- name: debug
+  debug:
+    var: result
+  # verbosity: 5
+
+- name: cycle
+  vars:
+    data:
+      a: 1
+      b: 2
+  debug:
+    msg: "{{ item.key }} = {{ item.value }}"
+    #msg: "{{ item.name }} is {{ item.group }}"
+  loop: "{{ data | dict2items }}"
+    #- {name: "Ars", group: "Admin"}
+    #- {name: "Ars", group: "DevOps"}
+    
+- name: register
+  command: echo "{{ item }}"
+  loop: 
+  - a
+  - b
+  register: res
+
+- name: debug
+  debug:
+    var: res
+
+- name: iteration of inventory
+  debug:
+    msg: "{{ item }}"
+  loop: "{{ groups['all'] }}"
+
+- name: big object
+  debug:
+    msg: "{{ item.name }} - {{ index }} - {{ ansible_loop.allitems }}"
+  loop:
+    - name: Ars
+      group: "Admin"
+      roles:
+        admin: true
+        manager: true
+        user: true
+    - name: alex
+    - name: alex2
+  loop_control:
+    label: "{{ item.name }}"
+    pause: 3
+    index_var: index
+    extended: yes
+
+- name: loop_var
+  debug:
+    msg: "{{ outer_item.name }}"
+  loop:
+    - name: Ars
+    - name: Van
+    - name: Kim
+  loop_control:
+    loop_var: outer_item
+
+- name: loop_var
+  include_tasks: inner.yml
+  loop:
+    - name: Ars
+    - name: Van
+    - name: Kim
+  loop_control:
+    loop_var: outer_item
+
+- name: file
+  debug:
+    msg: "{{ lookup('file', 'main.yml', errors='warn') }}"
+
+- name: vars
+  vars:
+    name: a
+  debug:
+    msg: "{{ lookup('vars', 'name') }}"
+
+- name: filters
+  debug:
+    msg: "{{ my_var | default(5)}}"
+
+- name: file
+  ignore_errors: true
+  file:
+    dest: "{{ item.path }}"
+    state: touch
+    mode: "{{ item.mode | default(omit) }}"
+  loop:
+    - path: "/test"
+    - path: "../test_2"
+      mode: "0666"
+
+- name: vars admin_true
+  vars:
+    admin: true
+  debug:
+    msg: "{{ admin | type_debug }}"
+
+- name: item to dict
+  vars:
+    admin:
+      - key: a
+        value: 1
+      - key: b
+        value: 2
+  debug:
+    msg: "{{ admin | items2dict }}"
+      
+- name: item to dict another number of keys_values
+  vars:
+    admin:
+      - keys: a
+        values: 1
+      - keys: b
+        values: 2
+  debug:
+    msg: "{{ admin | items2dict(key_name='keys', value_name='values') }}"
+  
+- name: types mutable
+  vars:
+    admin: "yes"
+  debug:
+    msg: "{{ admin | bool | type_debug }}"
+
+- name: json to yaml
+  vars:
+    admin: { a: 1, b: 2 }
+  debug:
+     msg: "{{ admin | to_yaml }}"
+    #msg: "{{ admin | to_nice_yaml }}"
+
+- name: yaml to json
+  vars:
+    admin: { a: 1, b: 2 }
+  debug:
+     msg: "{{ admin | to_json }}"
+    #msg: "{{ admin | to_nice_json }}"
+
+- name: combine
+  vars:
+    admin: { a: 1, b: 2 }
+  debug:
+     msg: "{{ admin | combine({'c': 3}) }}"
+    #msg: "{{ admin | to_nice_json }}"
+
+- name: zip
+  vars:
+    admin: [1, 2, 3]
+  debug:
+    msg: "{{ admin | zip(['a', 'b', 'c']) }}"
+  
+- name: map
+  vars:
+    admin: [1, 2]
+  debug:
+    msg: "{{ admin | map('extract', ['n', 'o', 'j']) | list }}"
+
+- name: join
+  vars:
+    admin: ['1', '2']
+  debug:
+    msg: "{{ admin | join(',') }}"
+
+- name: json_query
+  ignore_errors: true
+  vars:
+    admin: [1, 2]
+  debug:
+    msg: "{{ json.file | json_quere('app.name[*]') }}"
+
+- name: random
+  ignore_errors: true
+  vars:
+    admin: [1, 2, 3, 4]
+  debug:
+    msg: "{{ admin | random }}"
+
+- name: flatten
+  vars:
+    admin: [1, [2, 3]]
+  debug:
+    msg: "{{ admin | flatten }}"
+
+- name: unique
+  vars:
+    admin: [1, [2, 3], [3, 4, 5, 5]]
+  debug:
+    msg: "{{ admin | flatten | unique }}"
+
+- name: intersect
+  vars:
+    admin: [1, 2, 3]
+  debug:
+    msg: "{{ admin | intersect([1, 2]) }}"
+
+- name: union
+  vars:
+    var: [1, 2, 3]
+  debug:
+    msg: "{{ var | union([0, 1, 2, 4]) }}"
+ 
+- name: urlsplit
+  vars:
+    var: "http://google.com:9000/get"
+  debug:
+    msg: "{{ var | urlsplit('hostname') }}"
+
+- name: valid ip
+  vars:
+    ip: "127.0.0.1"
+  debug:
+    msg: "{{ ip | ansible.netcommon.ipv4 }}"
+
+- name: regex findall
+  vars:
+    regex: 'Some DNS servers are 8.8.8.8 and 8.8.4.4'
+  debug:
+    msg: "{{ regex | regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
+
+- name: regex replace
+  vars:
+    regex: 'ansible'
+  debug:
+    msg: "{{ regex | regex_replace('^a.*i(.*)$', 'a\\1') }}"  
+
+     
