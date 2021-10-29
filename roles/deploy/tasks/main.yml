@@ -180,6 +180,18 @@
 - name: random
   ignore_errors: true
   vars:
-    admin: [1, 2]
+    admin: [1, 2, 3, 4]
   debug:
     msg: "{{ admin | random }}"
+
+- name: flatten
+  vars:
+    admin: [1, [2, 3]]
+  debug:
+    msg: "{{ admin | flatten }}"
+
+- name: unique
+  vars:
+    admin: [1, [2, 3], [3, 4, 5, 5]]
+  debug:
+    msg: "{{ admin | flatten | unique }}"
