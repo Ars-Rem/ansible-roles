@@ -151,3 +151,9 @@
   debug:
      msg: "{{ admin | combine({'c': 3}) }}"
     #msg: "{{ admin | to_nice_json }}"
+
+- name: zip
+  vars:
+    admin: [1, 2, 3]
+  debug:
+     msg: "{{ admin | zip(['a', 'b', 'c']) }}"
