@@ -169,3 +169,17 @@
     admin: ['1', '2']
   debug:
     msg: "{{ admin | join(',') }}"
+
+- name: json_query
+  ignore_errors: true
+  vars:
+    admin: [1, 2]
+  debug:
+    msg: "{{ json.file | json_quere('app.name[*]') }}"
+
+- name: random
+  ignore_errors: true
+  vars:
+    admin: [1, 2]
+  debug:
+    msg: "{{ admin | random }}"
