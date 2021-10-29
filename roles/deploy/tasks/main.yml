@@ -220,6 +220,16 @@
   debug:
     msg: "{{ ip | ansible.netcommon.ipv4 }}"
 
+- name: regex findall
+  vars:
+    regex: 'Some DNS servers are 8.8.8.8 and 8.8.4.4'
+  debug:
+    msg: "{{ regex | regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b') }}"
 
-  
+- name: regex replace
+  vars:
+    regex: 'ansible'
+  debug:
+    msg: "{{ regex | regex_replace('^a.*i(.*)$', 'a\\1') }}"  
+
      
