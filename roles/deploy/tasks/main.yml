@@ -163,3 +163,9 @@
     admin: [1, 2]
   debug:
     msg: "{{ admin | map('extract', ['n', 'o', 'j']) | list }}"
+
+- name: join
+  vars:
+    admin: ['1', '2']
+  debug:
+    msg: "{{ admin | join(',') }}"
