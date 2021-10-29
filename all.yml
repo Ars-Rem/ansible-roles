@@ -9,7 +9,7 @@
     - role: preconfig
       tags: preconfig
     - role: deploy
-      test: 0
+    #  test: 0
       tags: deploy
 #    - role: deploy
 #    - role:swarm_init

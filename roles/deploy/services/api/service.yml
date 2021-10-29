@@ -1,10 +1,10 @@
 ---
 - name: "Create secret {{ name }}"
   community.docker.docker_secret:
-    name: foo
+    name: "{{ name }}.env"
     data: "{{ lookup('file', '.env') | b64encode }}"
     labels:
-      secret: "{{ lookup('file', '.env') | (hash('sha1')) }}"
+      secret: "{{ lookup('file', '.env') | hash('sha1') }}"
     data_is_b64: true
     state: present
 
@@ -14,8 +14,11 @@
     image: localhost:5000/api:latest
     state: present
     publish:
-      mode: ingress
-      protcol: tcp
-      published_port: 5000
-      target_port: 5000
+        mode: ingress
+        protcol: tcp
+        published_port: 3002
+        target_port: 3000
+    secrets:
+        - secret_name: "{{ name }}.env"
+          filename: "/opt/app/.env"
       
