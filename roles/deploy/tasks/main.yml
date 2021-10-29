@@ -5,4 +5,7 @@
     driver: overlay
 
 - name: upload services
-  
+  include: "..services/{{ item }}/service.yml"
+  vars:
+    name: "{{ item }}"
+  loop: "{{ services }}"

@@ -1,0 +1,10 @@
+---
+- name: "Create secret {{ name }}"
+  community.docker.docker_secret:
+    name: foo
+    data: "{{ lookup('file', '.env') | b64encode }}"
+    labels:
+      secret: "{{ lookup('file', '.env') | (hash('sha1')) }}"
+    data_is_b64: true
+    state: present
+    
