@@ -1,25 +1,13 @@
 ---
 - name: "config secret {{ name }}"
-  block:
-  - name: "Create secret {{ name }}"
-    include: "../secret.yml"
-  
-  rescue:
-    - name: "{{ name }} del service"
-      community.docker.docker_swarm_service:
-        name: "{{ name }}"
-        state: absent
-
-    - name: "Create secret {{ name }}"
-      include: "../secret.yml"
-        
+  include: "secret.yml"
 
 - name: "deploy service {{ name }}"
   block:
   - name: "deploy serv {{ name }}"
     community.docker.docker_swarm_service:
       name: "{{ name }}"
-      image: localhost:5000/api:latest
+      image: localhost:5000/{{ name }}:latest
       state: present
       networks: "{{ networkName }}"
       publish:
