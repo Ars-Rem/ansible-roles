@@ -12,11 +12,16 @@ rmqDefault:
 registry_name: "localhost:5000/"
 
 services:
-  - api
-  - app
-  - converter
-  - rmq
+  - name: api
+    version: latest
+#   - name: app
+#     version: latest
+#   - name: converter
+#     version: latest
+  - name: rmq
+    version: latest
 
 non_build_services:
-  - rmq
+- name: rmq
+  version: latest
 

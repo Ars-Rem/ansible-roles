@@ -1,16 +1,18 @@
 ---
-- name: deploys server
+- name: deploy  / build server
   hosts: deploy
   roles:
 #    - role: deploy
 #      message: "mes1"
 #    - role: deploy
 #      message: "mes2"  
-    - role: preconfig
-      tags: preconfig
-    - role: deploy
-    #  test: 0
-      tags: deploy
+    # - role: preconfig
+    #   tags: preconfig
+    # - role: deploy
+    # #  test: 0
+    #   tags: deploy
+    - role: build
+      tags: build
 #    - role: deploy
 #    - role:swarm_init
     
