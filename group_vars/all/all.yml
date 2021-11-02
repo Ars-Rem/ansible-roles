@@ -1,5 +1,5 @@
 ---
-rmqDefault:
+rm_default:
   - name: AMQP_EXCHANGE
     value: xchg_integrations
   - name: AMQP_USER
