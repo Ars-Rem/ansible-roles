@@ -2,19 +2,20 @@
 - name: deploy  / build server
   hosts: deploy
   roles:
+
+  - role: preconfig
+    tags: preconfig
+  - role: build
+    tags: build
+  - role: deploy
+    tags: deploy
+# test: 0  
+#    - role: deploy
+#    - role:swarm_init
 #    - role: deploy
 #      message: "mes1"
 #    - role: deploy
 #      message: "mes2"  
-    # - role: preconfig
-    #   tags: preconfig
-    # - role: deploy
-    # #  test: 0
-    #   tags: deploy
-    - role: build
-      tags: build
-#    - role: deploy
-#    - role:swarm_init
     
 - name: manager
   hosts: managers

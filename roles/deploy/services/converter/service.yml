@@ -1,0 +1,17 @@
+---
+- name: "config secret {{ name }}"
+  include: "secret.yml"
+
+- name: "deploy service {{ name }}"
+  block:
+  - name: "deploy serv {{ name }}"
+    community.docker.docker_swarm_service:
+      name: "{{ name }}"
+      image: "{{ registry_name }}{{ name }}:{{ version }}"
+      state: present
+      networks: "{{ network_name }}"
+      
+      secrets:
+          - secret_name: "{{ name }}.env"
+            filename: "/opt/app/.env"
+  tags: "{{ name }}"     
