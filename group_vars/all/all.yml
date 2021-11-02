@@ -8,3 +8,15 @@ rmqDefault:
     value: "{{rmq.password}}"
   - name: AMQP_HOSTNAME
     value: rmq
+
+registry_name: "localhost:5000/"
+
+services:
+  - api
+  - app
+  - converter
+  - rmq
+
+non_build_services:
+  - rmq
+

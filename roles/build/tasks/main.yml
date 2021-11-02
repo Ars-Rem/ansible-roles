@@ -1,0 +1,18 @@
+---
+- name: clone repo
+  ansible.builtin.git:
+    repo: 'https://github.com/AlariCode/docker-demo.git'
+    dest: "{{ git_folder }}"
+    version: block-7
+
+- name: create image
+  community.docker.docker_image:
+    name: "{{ registry_name }}{{ item }}"
+    tag: latest
+    push: yes
+    build:
+      path: "{{ git_folder }}"
+      dockerfile: "{{ git_folder }}apps/{{ item }}/dockerfile"
+    source: build
+  loop:
+    "{{ services | difference(non_build_services) }}"
