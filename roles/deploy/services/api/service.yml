@@ -11,11 +11,11 @@
       state: present
       networks: "{{ networkName }}"
       publish:
-        - mode: "ingress"
-          protocol: "tcp"
+        - mode: ingress
+          protocol: tcp
           published_port: 3002
           target_port: 3000
       secrets:
           - secret_name: "{{ name }}.env"
             filename: "/opt/app/.env"
-        
+  tags: "{{ name }}"     
