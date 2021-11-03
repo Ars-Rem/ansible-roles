@@ -1,7 +1,4 @@
 ---
-- name: "config secret {{ name }}"
-  include: "secret.yml"
-
 - name: "deploy service {{ name }}"
   block:
   - name: "deploy serv {{ name }}"

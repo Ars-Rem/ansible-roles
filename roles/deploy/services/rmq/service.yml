@@ -1,15 +1,14 @@
 ---
-- name: "config secret {{ name }}"
-  include: "secret.yml"
-
 - name: "deploy service {{ name }}"
   block:
   - name: "deploy serv {{ name }}"
     community.docker.docker_swarm_service:
       name: "{{ name }}"
-      image: rabbitmq:3-management
+      image: "rabbitmq:3-management"
       state: present
-      networks: "{{ network_name }}"
-      
-      
+      networks:
+        - name: "{{ network_name }}"
+      env:
+        - RABBITMQ_DEFAULT_USER={{ rmq.user }}
+        - RABBITMQ_DEFAULT_PASS={{ rmq.password }}
   tags: "{{ name }}"     
