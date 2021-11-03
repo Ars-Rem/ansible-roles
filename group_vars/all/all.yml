@@ -1,5 +1,5 @@
 ---
-rm_default:
+rmq_default:
   - name: AMQP_EXCHANGE
     value: xchg_integrations
   - name: AMQP_USER
@@ -8,6 +8,10 @@ rm_default:
     value: "{{rmq.password}}"
   - name: AMQP_HOSTNAME
     value: rmq
+  - name: RABBITMQ_DEFAULT_USER
+    value: "{{rmq.user}}"
+  - name: RABBITMQ_DEFAULT_PASS
+    value: "{{rmq.password}}"
 
 registry_name: "localhost:5000/"
 
@@ -23,5 +27,5 @@ services:
 
 non_build_services:
 - name: rmq
-  version: latest
+  version: 3-management
 
