@@ -1,22 +1,22 @@
 ---
 - name: "config secret {{ name }}"
-  include: "secret.yml"
+  include: "../secret.yml"
 
 - name: "deploy services {{ name }}"
   block:
-  - name: "deploy service {{ name }}"
+  - name: "deploy service [{{ name }}]"
     community.docker.docker_swarm_service:
       name: "{{ name }}"
+      #image: localhost:5000/api:latest
       image: "{{ registry_name }}{{ name }}:{{ version }}"
       state: present
-      networks:
-        - name: "{{ network_name }}"
+      networks: "{{ network_name }}"
       publish:
-        - mode: ingress
-          protocol: tcp
-          published_port: 3002
-          target_port: 3000
+      - mode: host
+        protocol: tcp
+        published_port: 3002
+        target_port: 3000
       secrets:
-          - secret_name: "{{ name }}.env"
-            filename: "/opt/app/.env"
+        - secret_name: "{{ name }}.env"
+          filename: "/opt/app/.env"
   tags: "{{ name }}"     

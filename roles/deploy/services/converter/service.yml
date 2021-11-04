@@ -1,6 +1,6 @@
 ---
 - name: "config secret conv{{ name }}"
-  include: "secret.yml"
+  include: "../secret.yml"
 
 - name: "deploy services{{ name }}"
   block:
@@ -9,8 +9,7 @@
       name: "{{ name }}"
       image: "{{ registry_name }}{{ name }}:{{ version }}"
       state: present
-      networks:
-        - name: "{{ network_name }}"
+      networks: network
       
       secrets:
           - secret_name: "{{ name }}.env"

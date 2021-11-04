@@ -25,7 +25,7 @@
         state: present
         keyring: /usr/share/keyrings/docker-archive-keyring.gpg
 
-    - name: install ustable repo
+    - name: install stable repo
       apt_repository:
         repo: > 
           deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu 

@@ -9,9 +9,10 @@
     tags: build
   - role: deploy
     tags: deploy
+# - role:swarm_init
 # test: 0  
 #    - role: deploy
-#    - role:swarm_init
+
 #    - role: deploy
 #      message: "mes1"
 #    - role: deploy
@@ -20,7 +21,7 @@
 - name: manager
   hosts: managers
   roles: 
-    - role:  preconfig
+    - role: preconfig
       tags: preconfig
 #    - swarm_join
 
