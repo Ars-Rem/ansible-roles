@@ -2,9 +2,9 @@
 - name: "config secret {{ name }}"
   include: "secret.yml"
 
-- name: "deploy service {{ name }}"
+- name: "deploy services {{ name }}"
   block:
-  - name: "deploy serv {{ name }}"
+  - name: "deploy service {{ name }}"
     community.docker.docker_swarm_service:
       name: "{{ name }}"
       image: "{{ registry_name }}{{ name }}:{{ version }}"
