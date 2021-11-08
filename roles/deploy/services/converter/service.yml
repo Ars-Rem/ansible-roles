@@ -9,7 +9,7 @@
       name: "{{ name }}"
       image: "{{ registry_name }}{{ name }}:{{ version }}"
       state: present
-      networks: network
+      networks: "{{ network_name }}"
       
       secrets:
           - secret_name: "{{ name }}.env"

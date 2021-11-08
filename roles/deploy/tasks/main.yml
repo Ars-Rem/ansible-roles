@@ -1,9 +1,10 @@
 ---
 - name: Create a network with driver options
   community.docker.docker_network:
-    # name: "{{ network_name }}"
-    name: network
+    name: "{{ network_name }}"
+  #  name: network
     driver: overlay
+    
 
 - name: upload services
   include: "../services/{{ item.name }}/service.yml"

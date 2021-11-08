@@ -1,4 +1,8 @@
 ---
+# - name: pause
+#   pause:
+#     minutes: 3
+    
 - name: "deploy services{{ name }}"
   block:
   - name: "deploy service {{ name }}"
@@ -6,7 +10,7 @@
       name: "{{ name }}"
       image: "rabbitmq:3-management"
       state: present
-      networks: network
+      networks: "{{ network_name }}"
       env:
         - RABBITMQ_DEFAULT_USER={{ rmq.user }}
         - RABBITMQ_DEFAULT_PASS={{ rmq.password }}

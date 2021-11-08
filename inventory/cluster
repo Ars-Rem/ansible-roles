@@ -1,6 +1,6 @@
 [deploy]
 test_server1 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2223 #user=test
-
+#test_server2 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2224 #user=test
 [managers]
 test_server2 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2224 #user=test
 test_server3 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2225 #user=test

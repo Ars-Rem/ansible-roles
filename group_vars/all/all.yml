@@ -8,10 +8,10 @@ rmq_default:
     value: "{{rmq.password}}"
   - name: AMQP_HOSTNAME
     value: rmq
-  - name: RABBITMQ_DEFAULT_USER
-    value: "{{rmq.user}}"
-  - name: RABBITMQ_DEFAULT_PASS
-    value: "{{rmq.password}}"
+  # - name: RABBITMQ_DEFAULT_USER
+  #   value: "{{rmq.user}}"
+  # - name: RABBITMQ_DEFAULT_PASS
+  #   value: "{{rmq.password}}"
 
 registry_name: "localhost:5000/"
 
