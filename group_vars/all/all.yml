@@ -24,15 +24,15 @@ services:
     version: latest
   - name: rmq
     version: latest
-  - name: nginx
-    version: latest
+  # - name: nginx
+  #   version: latest
 
 
 non_build_services:
 - name: rmq
   version: latest
-- name: nginx
-  version: latest
+# - name: nginx
+#   version: latest
 
 configs:
   converter:
