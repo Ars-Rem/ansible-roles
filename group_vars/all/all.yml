@@ -23,14 +23,14 @@ services:
   - name: converter
     version: latest
   - name: rmq
-    version: latest
+    version: 3-management
   - name: nginx
     version: latest
 
 
 non_build_services:
 - name: rmq
-  version: latest
+  version: 3-management
 - name: nginx
   version: latest
 
