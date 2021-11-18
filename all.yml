@@ -9,6 +9,9 @@
     tags: build
   - role: deploy
     tags: deploy
+  - tags: registry
+    role: registry
+    
 # - role:swarm_init
 # test: 0  
 #    - role: deploy

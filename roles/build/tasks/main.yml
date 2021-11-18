@@ -18,7 +18,7 @@
     "{{ services | difference(non_build_services) }}"
 
 
-# - name: del repo
-#   file:
-#     state: absent
-#     path: "{{ git_folder }}"
+- name: del repo
+  file:
+    state: absent
+    path: "{{ git_folder }}"
