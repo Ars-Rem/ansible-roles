@@ -12,7 +12,7 @@
       force_update: true
       networks: "{{ network_name }}"
       publish:
-        - mode: ingress
+        - mode: "{{ mode_pub }}"
           protocol: tcp
           published_port: 3002
           target_port: 3000
