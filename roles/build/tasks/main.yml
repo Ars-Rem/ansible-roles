@@ -3,7 +3,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/AlariCode/docker-demo.git'
     dest: "{{ git_folder }}"
-    version: block-14
+    version: block-7
 
 - name: create image
   community.docker.docker_image:

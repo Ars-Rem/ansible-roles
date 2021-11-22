@@ -7,8 +7,13 @@ http {
     listen 80;
     server_name image.local;
     
+    location ~ (/uploads/|/upload) {
+      proxy_pass http://api:3000;
+    }
   
-
+    location ~ (/) {
+      proxy_pass http://app;
+    }
 
     
     }
