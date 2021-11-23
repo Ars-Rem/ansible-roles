@@ -9,6 +9,8 @@
     tags: build
   - role: deploy
     tags: deploy
+  - role: swarm_init
+    tags: swarm_init
 # - role:swarm_init
 # test: 0  
 #    - role: deploy
@@ -23,6 +25,9 @@
   roles: 
     - role: preconfig
       tags: preconfig
+    - role: swarm_init
+      type: manager
+      tags: swarm_init  
 #    - swarm_join
 
 - name: workers
@@ -30,4 +35,7 @@
   roles: 
     - role: preconfig
       tags: preconfig
+    - role: swarm_init
+      type: worker
+      tags: swarm_init 
 #    - swarm_join
