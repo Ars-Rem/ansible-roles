@@ -20,17 +20,17 @@
 #    - role: deploy
 #      message: "mes2"  
     
-- name: manager
+- name: Manager
   hosts: managers
   roles: 
     - role: preconfig
       tags: preconfig
     - role: swarm_init
       type: manager
-      tags: swarm_init  
+      tags: swarm_init
 #    - swarm_join
 
-- name: workers
+- name: Worker
   hosts: workers
   roles: 
     - role: preconfig
