@@ -1,6 +1,6 @@
 ---
-- name: connect
-  var:
+- name: connecting
+  vars:
     token: "{{ lookup('file', '../../tokens/token-{{ type }}') }}"
   community.docker.docker_swarm:
     state: join

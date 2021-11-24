@@ -25,9 +25,9 @@
   roles: 
     - role: preconfig
       tags: preconfig
-    - role: swarm_init
+    - role: swarm_join
       type: manager
-      tags: swarm_init
+      tags: swarm_join
 #    - swarm_join
 
 - name: Worker
@@ -35,7 +35,15 @@
   roles: 
     - role: preconfig
       tags: preconfig
-    - role: swarm_init
+    - role: swarm_join
       type: worker
-      tags: swarm_init 
-#    - swarm_join
+      tags: swarm_join
+      
+  post_tasks: 
+  - name: clear tokens folder
+    file:
+      path: ./tokens
+      state: absent
+    ignore_errors: true
+    delegate_to: localhost
+    tags: swarm_join

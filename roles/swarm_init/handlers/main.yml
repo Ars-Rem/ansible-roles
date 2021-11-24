@@ -1,0 +1,4 @@
+---
+- name: exam with folder is create
+  debug:
+    msg: folder is exists!
