@@ -1,10 +1,10 @@
 [deploy]
-test_server1 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2223 # advertise_addr: 10.11.10.1 user=test
+server1 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2223 ssh_key=~/.ssh/id_rsa.pub# advertise_addr: 10.11.10.1 user=test
 
 [managers]
-test_server2 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2224 #user=test
-test_server3 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2225 #user=test
+server2 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2224 ssh_key=~/.ssh/id_rsa.pub#user=test
+server3 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2225 #user=test
 
 [workers]
-test_server4 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2226 #user=test
-test_server5 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2227 #user=test
+server4 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2226 #user=test
+server5 ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2227 #user=test

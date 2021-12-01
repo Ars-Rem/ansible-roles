@@ -11,6 +11,10 @@
     tags: deploy
   - role: swarm_init
     tags: swarm_init
+  - role: delete_nodes
+    node_name: server2
+    tags: delete_nodes
+
 # - role:swarm_init
 # test: 0  
 #    - role: deploy
@@ -28,7 +32,7 @@
     - role: swarm_join
       type: manager
       tags: swarm_join
-#    - swarm_join
+    
 
 - name: Worker
   hosts: workers
@@ -38,12 +42,12 @@
     - role: swarm_join
       type: worker
       tags: swarm_join
-      
-  post_tasks: 
-  - name: clear tokens folder
-    file:
-      path: ./tokens
-      state: absent
-    ignore_errors: true
-    delegate_to: localhost
-    tags: swarm_join
+    
+  # post_tasks: 
+  # - name: clear tokens folder
+  #   file:
+  #     path: ./tokens
+  #     state: absent
+  #   ignore_errors: true
+  #   delegate_to: localhost
+  #   tags: swarm_join

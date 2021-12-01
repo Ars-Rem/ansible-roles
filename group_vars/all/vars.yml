@@ -8,10 +8,10 @@ rmq_default:
     value: "{{rmq.password}}"
   - name: AMQP_HOSTNAME
     value: rmq
-  # - name: RABBITMQ_DEFAULT_USER
-  #   value: "{{rmq.user}}"
-  # - name: RABBITMQ_DEFAULT_PASS
-  #   value: "{{rmq.password}}"
+  - name: RABBITMQ_DEFAULT_USER
+    value: "{{rmq.user}}"
+  - name: RABBITMQ_DEFAULT_PASS
+    value: "{{rmq.password}}"
 
 registry_name: "localhost:5000/"
 
@@ -26,7 +26,7 @@ services:
     version: 3-management
   - name: nginx
     version: latest
-
+  
 
 non_build_services:
 - name: rmq
@@ -39,4 +39,5 @@ configs:
     queue: q_imageProcessor
 
 
-advertise_addr: 10.11.10.1
+advertise_addr: "10.11.10.1"
+#advertise_addr: "10.0.2.15"

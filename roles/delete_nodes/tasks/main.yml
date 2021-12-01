@@ -1,0 +1,35 @@
+---
+
+- name: make node status drain
+  community.docker.docker_node:
+    hostname: "{{ node_name }}"
+    availability: drain
+
+  
+- name: Get info on docker host
+  community.docker.docker_host_info:
+    containers: true
+  register: info_docker_host
+  retries: 30
+  delay: 2
+  until: info_docker_host.host_info.ContainersRunning == 0
+  delegate_to: "{{ node_name }}"
+
+# - name: Stop running containers
+#   docker_container:
+#     name: test_server4
+#     state: stopped
+#   loop: "{{ info_docker_host.containers | map(attribute='ID') | list }}"
+
+# - name: node status
+#   debug:
+#     msg: "{{ node_status.node }}"
+
+- name: Remove node from swarm
+  command: "docker node rm {{ node_name }} --force"
+  # community.docker.docker_swarm:
+  #   node_id: "{{ node_name }}"
+  #   state: remove
+  # ignore_errors: true
+
+

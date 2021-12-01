@@ -1,20 +1,21 @@
 ---
-# - name: connecting
-#   debug:
-#     msg: "{{ hostvars['test_server1']['ansible_facts']['docker_gwbridge']['ipv4']['address'] }}"
-
-
-- name: connecting
-  vars:
-    token: "{{ lookup('file', '../../tokens/token-{{ type }}') }}"
+- name: connect
+  # vars:
+  #   token: "{{ lookup('file', '../../tokens/token-{{ type }}') }}"
   community.docker.docker_swarm:
     state: join
-    remote_addrs: "{{ advertise_addr }}"
-    join_token: > 
-      "{{
-      hostvars['test_server1']['ansible_facts']['token_worker'] 
-      if type== 'worker' 
-        else
-      hostvars['test_server1']['ansible_facts']['token_manager'] 
-      }}"
+    remote_addrs: "{{ advertise_addr }}"    
+    join_token: "{{ hostvars['server1']['ansible_facts']['token_worker'] if type == 'worker' else hostvars['server1']['ansible_facts']['token_manager'] }}"
     
+# - name: connecting
+#   debug:
+#     msg: "{{ hostvars['test_server1']['ansible_facts']['token_manager'] }}"
+
+
+# - name: save to file
+#   local_action:
+#     module: copy
+#     content:  "{{ hostvars['test_server1']['ansible_facts']['token_manager'] }}" #\n{{ hostvars['test_server1']['ansible_facts']['token_worker'] }}"
+#     mode: 775
+#     dest: ~/Documents/education/ansible-roles/tmp.txt
+
